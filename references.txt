@@ -1,0 +1,48 @@
+@article{Bogdanos:2009ib,
+    author = "Bogdanos, C. and Nesseris, Savvas",
+    title = "{Genetic Algorithms and Supernovae Type Ia Analysis}",
+    eprint = "0903.2805",
+    archivePrefix = "arXiv",
+    primaryClass = "astro-ph.CO",
+    doi = "10.1088/1475-7516/2009/05/006",
+    journal = "JCAP",
+    volume = "05",
+    pages = "006",
+    year = "2009"
+}
+
+@article{Nesseris:2012tt,
+    author = "Nesseris, Savvas and Garcia-Bellido, Juan",
+    title = "{A new perspective on Dark Energy modeling via Genetic Algorithms}",
+    eprint = "1205.0364",
+    archivePrefix = "arXiv",
+    primaryClass = "astro-ph.CO",
+    reportNumber = "IFT-UAM-CSIC-12-42",
+    doi = "10.1088/1475-7516/2012/11/033",
+    journal = "JCAP",
+    volume = "11",
+    pages = "033",
+    year = "2012"
+}
+
+@article{Arjona:2019fwb,
+    author = "Arjona, Rubén and Nesseris, Savvas",
+    title = "{What can Machine Learning tell us about the background expansion of the Universe?}",
+    eprint = "1910.01529",
+    archivePrefix = "arXiv",
+    primaryClass = "astro-ph.CO",
+    reportNumber = "IFT-UAM/CSIC-19-130",
+    month = "10",
+    year = "2019"
+}
+
+@article{Arjona:2020kco,
+    author = "Arjona, Rubén and Nesseris, Savvas",
+    title = "{Hints of dark energy anisotropic stress using Machine Learning}",
+    eprint = "2001.11420",
+    archivePrefix = "arXiv",
+    primaryClass = "astro-ph.CO",
+    reportNumber = "IFT-UAM/CSIC-20-18",
+    month = "1",
+    year = "2020"
+}
