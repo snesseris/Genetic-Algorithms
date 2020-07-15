@@ -11,6 +11,19 @@
     year = "2009"
 }
 
+@article{Nesseris:2010ep,
+    author = "Nesseris, Savvas and Shafieloo, Arman",
+    title = "{A model independent null test on the cosmological constant}",
+    eprint = "1004.0960",
+    archivePrefix = "arXiv",
+    primaryClass = "astro-ph.CO",
+    doi = "10.1111/j.1365-2966.2010.17254.x",
+    journal = "Mon. Not. Roy. Astron. Soc.",
+    volume = "408",
+    pages = "1879--1885",
+    year = "2010"
+}
+
 @article{Nesseris:2012tt,
     author = "Nesseris, Savvas and Garcia-Bellido, Juan",
     title = "{A new perspective on Dark Energy modeling via Genetic Algorithms}",
@@ -23,6 +36,36 @@
     volume = "11",
     pages = "033",
     year = "2012"
+}
+
+@article{Nesseris:2013bia,
+    author = "Nesseris, Savvas and García-Bellido, Juan",
+    title = "{Comparative analysis of model-independent methods for exploring the nature of dark energy}",
+    eprint = "1306.4885",
+    archivePrefix = "arXiv",
+    primaryClass = "astro-ph.CO",
+    reportNumber = "IFT-UAM-CSIC-13-073",
+    doi = "10.1103/PhysRevD.88.063521",
+    journal = "Phys. Rev. D",
+    volume = "88",
+    number = "6",
+    pages = "063521",
+    year = "2013"
+}
+
+@article{Sapone:2014nna,
+    author = "Sapone, Domenico and Majerotto, Elisabetta and Nesseris, Savvas",
+    title = "{Curvature versus distances: Testing the FLRW cosmology}",
+    eprint = "1402.2236",
+    archivePrefix = "arXiv",
+    primaryClass = "astro-ph.CO",
+    reportNumber = "IFT-UAM-CSIC-14-094",
+    doi = "10.1103/PhysRevD.90.023012",
+    journal = "Phys. Rev. D",
+    volume = "90",
+    number = "2",
+    pages = "023012",
+    year = "2014"
 }
 
 @article{Arjona:2019fwb,
