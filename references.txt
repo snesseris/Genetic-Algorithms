@@ -89,3 +89,52 @@
     month = "1",
     year = "2020"
 }
+
+@article{Hogg:2020ktc,
+    author = "Hogg, Natalie B. and Martinelli, Matteo and Nesseris, Savvas",
+    title = "{Constraints on the distance duality relation with standard sirens}",
+    eprint = "2007.14335",
+    archivePrefix = "arXiv",
+    primaryClass = "astro-ph.CO",
+    reportNumber = "IFT-UAM/CSIC-20-114",
+    doi = "10.1088/1475-7516/2020/12/019",
+    journal = "JCAP",
+    volume = "12",
+    pages = "019",
+    year = "2020"
+}
+
+@article{Martinelli:2020hud,
+    author = "Martinelli, M. and others",
+    collaboration = "EUCLID",
+    title = "{Euclid: Forecast constraints on the cosmic distance duality relation with complementary external probes}",
+    eprint = "2007.16153",
+    archivePrefix = "arXiv",
+    primaryClass = "astro-ph.CO",
+    reportNumber = "IFT-UAM/CSIC-20-117",
+    doi = "10.1051/0004-6361/202039078",
+    month = "7",
+    year = "2020"
+}
+
+@article{Renzi:2020bvl,
+    author = "Renzi, Fabrizio and Hogg, Natalie B. and Martinelli, Matteo and Nesseris, Savvas",
+    title = "{Strongly lensed supernovae as a self-sufficient probe of the distance duality relation}",
+    eprint = "2010.04155",
+    archivePrefix = "arXiv",
+    primaryClass = "astro-ph.CO",
+    month = "10",
+    year = "2020"
+}
+
+@article{Arjona:2020axn,
+    author = "Arjona, Rub\'en and Lin, Hai-Nan and Nesseris, Savvas and Tang, Li",
+    title = "{Machine learning forecasts of the cosmic distance duality relation with strongly lensed gravitational wave events}",
+    eprint = "2011.02718",
+    archivePrefix = "arXiv",
+    primaryClass = "astro-ph.CO",
+    reportNumber = "IFT-UAM/CSIC-20-153",
+    month = "11",
+    year = "2020"
+}
+
