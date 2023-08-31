@@ -138,3 +138,17 @@
     year = "2020"
 }
 
+@article{Kamerkar:2022dfu,
+    author = "Kamerkar, Ahana and Nesseris, Savvas and Pinol, Lucas",
+    title = "{Machine learning cosmic inflation}",
+    eprint = "2211.14142",
+    archivePrefix = "arXiv",
+    primaryClass = "astro-ph.CO",
+    reportNumber = "IFT-UAM/CSIC-22-141",
+    doi = "10.1103/PhysRevD.108.043509",
+    journal = "Phys. Rev. D",
+    volume = "108",
+    number = "4",
+    pages = "043509",
+    year = "2023"
+}
