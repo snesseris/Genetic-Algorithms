@@ -7,7 +7,7 @@ In the Mathematica version you can:
 3) Run with both uncorrelated and correlated data, just change the likelihood.
 4) Perform error estimates using the path-integral approach, see the paper arXiv:1205.0364.
 
-The Python version, called "GATO" = Genetic Algorithm Toolkit is now (August 2023) released!
+The Python version, called "GATO" = Genetic Algorithm TOolkit is now (August 2023) released!
 
 If you use this code, please cite the papers 0903.2805, 1205.0364, 1910.01529, 2001.11420 and 2211.14142 (see the references.txt file for the bib entries).
 
