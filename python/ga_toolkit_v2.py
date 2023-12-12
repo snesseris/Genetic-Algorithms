@@ -7,10 +7,11 @@ import time
 import pickle
 import os
 import math as mt
+from sys import exit
 
 
 # This sets the version number.
-__version__ = '2.1'
+__version__ = '2.2'
 
 # This variable keeps track if we already printed the logo
 __logo__ = False
@@ -89,13 +90,14 @@ def trig1(x):
 	
 def pickgram(gram, x):
 	pick = {
-		'poly': poly(x),
-		'polyxtox': polyxtox(x),
-		'cpl': cpl(x),
-		'trig1': trig1(x)
+		'poly': poly,
+		'polyxtox': polyxtox,
+		'cpl': cpl,
+		'trig1': trig1
 	}
+	chosen_gram = pick.get(gram,'poly')
 	try:
-		return pick.get(gram,'poly')
+		return chosen_gram(x)
 	except:
 		print("No correct grammar given")
 		exit()
