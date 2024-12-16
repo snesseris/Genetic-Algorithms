@@ -1,3 +1,6 @@
+# Genetic algorithms' toolkit for long run chains with no iteration number printed
+# Implementation of the error estimate through the path integral approach
+
 from __future__ import division
 from sympy import *
 import sympy as sym
@@ -85,7 +88,6 @@ def exp(x):
         try:
             return np.longdouble(pow(2.718, np.longdouble(x)))
         except OverflowError:
-        # Gestisci l'overflow, ad esempio restituendo un valore massimo consentito
             return np.finfo(np.longdouble).max
     
 def polyxtox(x):
@@ -95,7 +97,6 @@ def polyxtox(x):
         try:
             return np.longdouble(pow(np.longdouble(x), np.longdouble(x)))
         except OverflowError:
-        # Gestisci l'overflow, ad esempio restituendo un valore massimo consentito
             return np.finfo(np.longdouble).max
 
 # we do the trick below so that we can evaluate both symbolic and fast numeric expressions at one :D 
@@ -110,7 +111,7 @@ def pickgram(gram, x):
 		'poly': poly,
 		'polyxtox': polyxtox,
 		'exp': exp,
-		'cpl': cpl,      
+		'cpl': cpl,  
 		'trig1': trig1
 	}
 	chosen_gram = pick.get(gram,'poly')
@@ -355,3 +356,125 @@ def evolution(chi2f, input, gram):
 	if input['save_chains'][0]==True:
 		chainfile.close()
 	return bestfitperstep
+
+###############################################################################
+
+def derivative(f,a,method='central',h=0.0001):
+    '''Compute the difference formula for f'(a) with step size h.
+    Parameters
+    ----------
+    f : function
+        Vectorized function of one variable
+    a : number
+        Compute derivative at x = a
+    method : string
+        Difference formula: 'forward', 'backward' or 'central'
+            central: (f(a+h) - f(a-h))/2h
+            forward: (f(a+h) - f(a))/h
+            backward: (f(a) - f(a-h))/h       
+    h : number
+        Step size in difference formula
+    Returns
+    -------
+    Derivative function
+    '''
+    if method == 'central':
+        return (f(a + h) - f(a - h))/(2*h)
+    elif method == 'forward':
+        return (f(a + h) - f(a))/h
+    elif method == 'backward':
+        return (f(a) - f(a - h))/h
+    else:
+        raise ValueError("Method must be 'central', 'forward' or 'backward'.")
+
+from scipy.optimize import minimize
+from scipy.special import erf
+
+def der_points(xdata, ydata, ydata_err):
+	'''Compute the derivative of a set of data points
+	Parameters
+	----------
+	xdata : array-like
+		x data points
+	ydata : array-like
+		y data points
+	ydata_err : array-like
+		y data errors
+	Returns
+	-------
+	Derivative points, error of the derivative points
+	'''
+	dx = np.diff(xdata)
+	dy_dx = np.zeros_like(ydata)
+	sigma_dy_dx = np.zeros_like(ydata)
+	for i in range(1, len(xdata) - 1):
+		dy_dx[i] = (ydata[i + 1] - ydata[i - 1]) / (xdata[i + 1] - xdata[i - 1])
+		sigma_dy_dx[i] = np.sqrt((ydata_err[i + 1]**2 + ydata_err[i - 1]**2) / (xdata[i + 1] - xdata[i - 1])**2)
+
+    # Handle boundaries with forward/backward differences
+	dy_dx[0] = (ydata[1] - ydata[0]) / (xdata[1] - xdata[0])
+	sigma_dy_dx[0] = np.sqrt((ydata_err[1]**2 + ydata_err[0]**2) / (xdata[1] - xdata[0])**2)
+	dy_dx[-1] = (ydata[-1] - ydata[-2]) / (xdata[-1] - xdata[-2])
+	sigma_dy_dx[-1] = np.sqrt((ydata_err[-1]**2 + ydata_err[-2]**2) / (xdata[-1] - xdata[-2])**2)
+	return dy_dx, sigma_dy_dx
+
+def compute_dfuncGA(X, Y, sY, funcGA):
+    '''
+    Computes the error function dfuncGA(z) for the GA functions, incorporating the uncertainty bands for the given data.
+    Parameters:
+        X : array-like
+            Input data points.
+        Y : array-like
+            Observed data points.
+        sY : array-like
+            Standard deviations of the observed data points.
+        funcGA : callable
+            The function that computes the GA function.
+    Returns:
+        dfuncGA : callable
+            A function that computes the uncertainty of the GA function.
+    '''
+    # Define the polynomial function parapoly
+    def parapoly(x, a1, a2, a3):
+        return a1 + a2 * x + a3 * x**2
+
+    # Define chi2CI
+    def chi2CI(params, X, Y, sY, funcGA):
+        a1, a2, a3 = params
+        CI = []
+        for i in range(len(X)):
+            term1 = 0.5 * (
+                erf(1 / (np.sqrt(2) * sY[i])*(parapoly(X[i], a1, a2, a3) + funcGA(X[i]) - Y[i]))
+              + erf(1 / (np.sqrt(2) * sY[i])*(parapoly(X[i], a1, a2, a3) - funcGA(X[i]) + Y[i]))
+        		)
+            CI.append(term1)
+        return sum((np.array(CI) - erf(1/np.sqrt(2)))**2)
+
+    # Define chi2GApluserr
+    def chi2GApluserr(params, X, Y, sY, funcGA):
+        a1, a2, a3 = params
+        temp = [
+            (Y[i] - (funcGA(X[i]) + parapoly(X[i], a1, a2, a3))) / sY[i]
+            for i in range(len(X))
+        ]
+        return sum(temp[i]**2 for i in range(len(X)))
+
+    # Define chi2tot
+    def chi2tot(params, X, Y, sY, funcGA):
+        return chi2CI(params, X, Y, sY, funcGA) + chi2GApluserr(params, X, Y, sY, funcGA)
+
+    # Minimize chi2tot to find optimal parameters
+    fminerr = minimize(
+        chi2tot,
+        [0.11, 0.11, 0.11],
+        args=(X, Y, sY, funcGA),
+        method='L-BFGS-B',
+        options={'maxiter': 500}
+    )
+    a1, a2, a3 = fminerr.x
+
+    # Define dfuncGA based on the optimized parameters for the parametric polynomial
+    def dfuncGA(z):
+        return parapoly(z, a1, a2, a3)
+
+    return dfuncGA
