@@ -14,10 +14,14 @@ Welcome to the Genetic Algorithm TOolkit (GATO)!
 
 This is a Genetic Algorithm (GA) implementation in python3, developed by Savvas Nesseris (2022-23), email: savvas nesseris@csic.es
 
-The folder contains three files:
+The folder contains four files:
 1) The python file "ga_toolkit_v2.py" which contains the nessesary GA functions needed to run the code. Use "import" to use it in your code (see also the example below).
-2) The Jupyter notebook "example_v1.ipynb" which highlights the usage of the code.
-3) The txt file "data_hz.txt" with some mock data, used in the example above.
+2) The python file "ga_toolkit_v2_run.py" which is used for long chains and iterations since it doesn't print each generation. It includes the following new functions:
+     - "derivative"; which computes the derivative of a function since the Scipy one was deprecated;
+     - "compute_dfuncGA"; which computes the error for the resulting function of the GA using the path integral approach;
+     - "der_points"; which computes the derivative and resulting error for a set of descrete data points, useful to apply the "compute_dfuncGA" in case of the derivative of a function resulting from the GA;
+3) The Jupyter notebook "example_v1.ipynb" which highlights the usage of the code.
+4) The txt file "data_hz.txt" with some mock data, used in the example above.
 
 For now, the code only fits one-dimensional data of the form, x, y, \sigma_y. To use with your own data/likelihoods, just replace the chi^2 appropriately. A version with more than one independent variables is coming soon.
 
